@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Connect</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background:#f4f6f8; }
+    header { background:#1e293b; color:#fff; padding:16px; text-align:center; }
+    nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
+    main { padding:20px; max-width:900px; margin:auto; }
+    .card { background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:20px; }
+    .chat-box { border:1px solid #ddd; height:200px; overflow-y:auto; padding:10px; margin-bottom:10px; }
+    input, button { padding:10px; font-size:16px; }
+    button { background:#2563eb; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    footer { text-align:center; padding:15px; background:#e5e7eb; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 Global Connect</h1>
+    <p>Connect with people around the world — respectfully.</p>
+    <nav>
+      <a href="#chat">Chat</a>
+      <a href="#rules">Guidelines</a>
+      <a href="#policy">User Policy</a>
+    </nav>
+  </header>  <main>
+    <section id="chat" class="card">
+      <h2>Community Chat (MVP)</h2>
+      <div class="chat-box" id="chatBox"></div>
+      <input type="text" id="username" placeholder="Your name" /><br/><br/>
+      <input type="text" id="message" placeholder="Type a respectful message" />
+      <button onclick="sendMessage()">Send</button>
+      <p><small>⚠️ Messages are moderated. Hate or explicit content is not allowed.</small></p>
+    </section><section id="rules" class="card">
+  <h2>Community Guidelines</h2>
+  <ul>
+    <li>Respect all cultures, races, and beliefs</li>
+    <li>No hate speech, harassment, or bullying</li>
+    <li>No sexual or explicit content</li>
+    <li>No illegal activities</li>
+    <li>Report harmful behavior</li>
+  </ul>
+</section>
+
+<section id="policy" class="card">
+  <h2>User Policy</h2>
+  <p>By using Global Connect, you agree to follow our community guidelines. Violations may result in warnings, temporary bans, or permanent removal.</p>
+  <p>User data is protected and not sold. Basic moderation logs are stored for safety.</p>
+</section>
+
+  </main>  <footer>
+    <p>© 2026 Global Connect | Safe • Open • Worldwide</p>
+  </footer>  <script>
+    const bannedWords = ['hate','sex','kill','nude'];
+
+    function sendMessage() {
+      const user = document.getElementById('username').value || 'Guest';
+      const msg = document.getElementById('message').value;
+      if (!msg) return;
+
+      for (let word of bannedWords) {
+        if (msg.toLowerCase().includes(word)) {
+          alert('Message blocked due to inappropriate content.');
+          return;
+        }
+      }
+
+      const chatBox = document.getElementById('chatBox');
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>${user}:</strong> ${msg}`;
+      chatBox.appendChild(p);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      document.getElementById('message').value = '';
+    }
+  </script></body>
+</html>
